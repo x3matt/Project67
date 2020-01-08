@@ -1,0 +1,75 @@
+plugins {
+    id 'org.springframework.boot' version '2.2.0.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'java'
+    id "com.moowork.node" version "1.1.1"
+}
+
+group = 'de.telran'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+node {
+    version = '12.14.0'
+    npmVersion = '6.12.1'
+    download = true
+    workDir = file("${project.projectDir}/node")
+    nodeModulesDir = file("${project.projectDir}/src/main/resources/WebApp/")
+}
+
+task staticResourcesClean(type: Delete) {
+    delete fileTree("${project.projectDir}/src/main/resources/static") {
+        include '**/*'
+    }
+}
+
+task buildAngularProduction(type: NpmTask, dependsOn: 'npmInstall') {
+    args = ['run', 'build:prod']
+    dependsOn staticResourcesClean
+}
+
+sourceSets {
+    main {
+        resources {
+            exclude '**/WebApp/*'
+        }
+    }
+}
+
+processResources {
+    dependsOn buildAngularProduction
+}
+
+clean {
+    dependsOn staticResourcesClean
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'mysql:mysql-connector-java'
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+test {
+    useJUnitPlatform()
+}

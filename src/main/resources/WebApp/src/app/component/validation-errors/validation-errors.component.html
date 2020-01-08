@@ -1,0 +1,18 @@
+<!--
+{
+  "required": true,
+  "minlength": {
+    "requiredLength": 3,
+    "actualLength": 1
+  }
+}-->
+
+
+<div *ngIf="!control.valid && (control.dirty || control.touched)"
+     class="alert alert-danger">
+  <div *ngFor="let error of errors()">
+    {{ error.value}}
+  </div>
+
+</div>
+
