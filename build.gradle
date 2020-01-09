@@ -51,7 +51,8 @@ sourceSets {
 }
 
 processResources {
-    dependsOn buildAngularProduction
+    if (project.gradle.startParameter.taskNames.contains('assemble'))
+        dependsOn buildAngularProduction
 }
 
 clean {
