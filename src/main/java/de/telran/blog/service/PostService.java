@@ -6,6 +6,7 @@ import de.telran.blog.repository.AuthorRepository;
 import de.telran.blog.repository.PostRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,5 +42,15 @@ public class PostService {
                 .orElseThrow(
                         () -> new RuntimeException("Post with id=" + id + "not found")
                 ));
+    }
+
+    public List<PostDto> getPostsByKeyWords(String keyWords){
+        List<PostDto> result = new ArrayList<>();
+        for(PostEntity post: postRepository.findAll()){
+            if(post.getTitle().toLowerCase().contains(keyWords) || post.getBody().toLowerCase().contains(keyWords)){
+                result.add(new PostDto(post));
+            }
+        }
+        return result;
     }
 }
