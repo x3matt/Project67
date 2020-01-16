@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {PostDto} from '../../dto/PostDto';
 import {PostService} from '../../service/post/post.service';
+import {PageDto} from '../../dto/PageDto';
+
 
 @Component({
   selector: 'app-main',
@@ -8,12 +9,19 @@ import {PostService} from '../../service/post/post.service';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
-
-  posts: PostDto[];
+  posts: PageDto;
   constructor(private postService: PostService) { }
 
+
   ngOnInit() {
-    this.postService.getAllPosts().subscribe(
+    this.postService.getAllPostsPages(0, 5).subscribe(
+      posts => {
+        this.posts = posts;
+      }
+    );
+  }
+  updatePage(newPage){
+    this.postService.getAllPostsPages(newPage, 5).subscribe(
       posts => {
         this.posts = posts;
       }

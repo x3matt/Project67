@@ -8,6 +8,12 @@ import java.util.Date;
 @Data
 public class PostDto {
 
+    private Long id;
+    private String title;
+    private String body;
+    private Date date;
+    private Long authorId;
+
     public PostDto() {
     }
 
@@ -17,10 +23,4 @@ public class PostDto {
         this.title = postEntity.getTitle();
         this.date = postEntity.getDate();
     }
-
-    private Long id;
-    private String title;
-    private String body;
-    private Date date;
-    private Long authorId;
 }

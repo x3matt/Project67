@@ -13,11 +13,14 @@ import { AboutComponent } from './component/about/about.component';
 import { PostComponent } from './component/post/post.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { EditPostComponent } from './component/edit-post/edit-post.component';
-import { ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { EditAuthorComponent } from './component/edit-author/edit-author.component';
 import { ValidationErrorsComponent } from './component/validation-errors/validation-errors.component';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { PaginatorComponent } from './component/paginator/paginator.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -36,7 +39,8 @@ export function createTranslateLoader(http: HttpClient) {
     PostComponent,
     EditPostComponent,
     EditAuthorComponent,
-    ValidationErrorsComponent
+    ValidationErrorsComponent,
+    PaginatorComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +53,10 @@ export function createTranslateLoader(http: HttpClient) {
         useFactory: (createTranslateLoader),
         deps: [HttpClient]
       }
-    })
+    }),
+    PaginationModule.forRoot(),
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
