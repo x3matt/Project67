@@ -1,36 +1,29 @@
-create table AUTHORENTITY
+create table AUTHOR
 (
-    ID           bigint      not null auto_increment,
-    FirstName   varchar(255) not null,
-    LastName    varchar(255) not null,
+    ID           bigint (20)  not null auto_increment,
+    FIRST_NAME   varchar(255) not null,
+    LAST_NAME    varchar(255) not null,
 
     primary key (ID)
 );
 
-create table POSTENTITY
+create table POST
 (
-    ID                  bigint          not null auto_increment,
+    ID                  bigint (20)     not null auto_increment,
     BODY                varchar(255)    not null ,
     DATE                datetime        not null,
-    TITLE               varchar(255),
-    AUTHORENTITY_ID     bigint,
+    TITLE               varchar(255)    not null,
+    AUTHOR_ID           bigint (20)     not null,
     primary key (ID)
 );
 
-CREATE TABLE hibernate_sequence (
-    id bigint NOT NULL,
-    next_val BIGINT NOT NULL
-                                );
-INSERT INTO hibernate_sequence VALUES (0, 1);
-
-alter table AUTHORENTITY
+alter table AUTHOR
     add constraint ID unique (ID);
 
-alter table POSTENTITY
+alter table POST
     add constraint ID unique (ID);
 
-alter table POSTENTITY
-    add constraint POSTENTITY_ID_AUTHORENTITY_ID
-        foreign key (AUTHORENTITY_ID) references AUTHORENTITY(ID) ON DELETE CASCADE;
-
+alter table POST
+    add constraint POST_AUTHOR_ID_AUTHOR_ID
+        foreign key (AUTHOR_ID) references AUTHOR(ID) ON DELETE CASCADE;
 
