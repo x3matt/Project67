@@ -11,7 +11,7 @@ import {PageDto} from '../../dto/PageDto';
 export class PostService {
 
   private URL_POST = '/api/post';
-  private URL_POST_PAGE = '/api/posts/pages';
+  private URL_POST_PAGE = '/api/posts';
 
   constructor(private http: HttpClient) { }
 
