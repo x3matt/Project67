@@ -72,9 +72,7 @@ dependencies {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
 
-    testImplementation 'com.h2database:h2:1.4.197'
-
-
+    testImplementation('com.h2database:h2')
 }
 
 test {
