@@ -11,7 +11,7 @@ import {PageDto} from '../../dto/PageDto';
 export class PostService {
 
   private URL_POST = '/api/post';
-  private URL_POST_PAGE = '/api/posts';
+  private URL_POST_PAGE = '/api/post/pages';
 
   constructor(private http: HttpClient) { }
 
@@ -27,9 +27,7 @@ export class PostService {
     return this.http.post(this.URL_POST, postDto);
   }
 
-  /*http://localhost:8080/api/posts/pages?page=0&size=2&sortDir=asc&sort=id*/
-
   getAllPostsPages(page: number, size: number): Observable<PageDto> {
-    return this.http.get<PageDto>(this.URL_POST_PAGE + `/?page=${page}&size=${size}`);
+    return this.http.get<PageDto>(this.URL_POST_PAGE + '?page=' + page + '&size=' + size);
   }
 }

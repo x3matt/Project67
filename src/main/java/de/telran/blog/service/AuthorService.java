@@ -19,52 +19,22 @@ public class AuthorService implements IAuthorService{
         this.authorRepository = authorRepository;
     }
 
-
-    public Long createAuthor(AuthorDto author) {
-        AuthorEntity authorEntity = new AuthorEntity();
-        authorEntity.setFirstName(author.getFirstName());
-        authorEntity.setLastName(author.getLastName());
-        return authorRepository.save(authorEntity).getId();
+    @Override
+    public Long createAuthor(AuthorEntity author) {
+       return authorRepository.save(author).getId();
     }
-
-
-    public List<AuthorDto> getAllAuthors() {
-        return authorRepository.findAll()
-                .stream()
-                .map(authorEntity -> {
-                    AuthorDto authorDto =  new AuthorDto();
-                    authorDto.setFirstName(authorEntity.getFirstName());
-                    authorDto.setLastName(authorEntity.getLastName());
-                    authorDto.setId(authorEntity.getId());
-                    return authorDto;})
-                .collect(Collectors.toList());
-    }
-
-    //--------------------------------------------------------------------------
 
     @Override
-    public AuthorDto getAuthorEntityById(Long id) {
-        return convertToDto(authorRepository.getOne(id));
+    public List<AuthorEntity> getAllAuthors() {
+      return authorRepository.findAll();
     }
 
     @Override
     public AuthorEntity getCurrentAuthor() {
-
         AuthorEntity authorEntity = new AuthorEntity();
         authorEntity.setId(1L);
         authorEntity.setFirstName("FirstName");
         authorEntity.setLastName("LastName");
         return authorEntity;
     }
-
-    private AuthorDto convertToDto(AuthorEntity authorEntity) {
-        AuthorDto authorDto = new AuthorDto();
-
-        authorDto.setId(authorEntity.getId());
-        authorDto.setFirstName(authorEntity.getFirstName());
-        authorDto.setLastName(authorEntity.getLastName());
-
-        return authorDto;
-    }
-
 }

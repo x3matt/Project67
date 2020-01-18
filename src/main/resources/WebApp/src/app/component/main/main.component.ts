@@ -14,14 +14,14 @@ export class MainComponent implements OnInit {
 
 
   ngOnInit() {
-    this.postService.getAllPostsPages(0, 5).subscribe(
+    this.postService.getAllPostsPages(0, 3).subscribe(
       posts => {
         this.posts = posts;
       }
     );
   }
   updatePage(newPage){
-    this.postService.getAllPostsPages(newPage, 5).subscribe(
+    this.postService.getAllPostsPages(newPage, 3).subscribe(
       posts => {
         this.posts = posts;
       }

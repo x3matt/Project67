@@ -1,18 +1,22 @@
 package de.telran.blog.service;
 import de.telran.blog.dto.PostDto;
+import de.telran.blog.entity.PostEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface IPostService {
 
-    Page<PostDto> findAllPage(Pageable pageable);
+    Page<PostEntity> findAllPage(Pageable pageable);
 
-    List<PostDto> getPostsListByAuthor(int page, int size, String sortDir, String sort);
+    List<PostEntity> getPostsListByAuthor(int page, int size, String sortDir, String sort);
 
-    PostDto createNewPost(PostDto post);
+    PostEntity createPost(PostEntity post);
 
-    PostDto getPostById(Long id);
+    PostEntity getPost(Long id);
 
-    void updatePost(PostDto post);
+    void updatePost(PostEntity post);
+
+    List<PostEntity> getAllPosts();
+
 }
