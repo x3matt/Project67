@@ -1,29 +1,22 @@
-create table AUTHOR
+CREATE TABLE author
 (
-    ID           bigint (20)  not null auto_increment,
-    FIRST_NAME   varchar(255) not null,
-    LAST_NAME    varchar(255) not null,
-
-    primary key (ID)
+    id           BIGINT (20)  NOT NULL AUTO_INCREMENT UNIQUE,
+    first_name   VARCHAR(255) NOT NULL,
+    last_name    VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id)
 );
 
-create table POST
+CREATE TABLE post
 (
-    ID                  bigint (20)     not null auto_increment,
-    BODY                varchar(255)    not null ,
-    DATE                datetime        not null,
-    TITLE               varchar(255)    not null,
-    AUTHOR_ID           bigint (20)     not null,
-    primary key (ID)
+    id                  BIGINT (20)     NOT NULL AUTO_INCREMENT UNIQUE,
+    body                VARCHAR(255)    NOT NULL,
+    date                DATETIME        NOT NULL,
+    title               VARCHAR(255)    NOT NULL,
+    author_id           BIGINT (20)     NOT NULL,
+    PRIMARY KEY (id)
 );
 
-alter table AUTHOR
-    add constraint ID unique (ID);
-
-alter table POST
-    add constraint ID unique (ID);
-
-alter table POST
-    add constraint POST_AUTHOR_ID_AUTHOR_ID
-        foreign key (AUTHOR_ID) references AUTHOR(ID) ON DELETE CASCADE;
+ALTER TABLE post
+    ADD CONSTRAINT post_author_id_author_id
+        FOREIGN KEY (author_id) REFERENCES author(id) ON DELETE CASCADE;
 
