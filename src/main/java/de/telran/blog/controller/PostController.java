@@ -1,6 +1,7 @@
 package de.telran.blog.controller;
 
 import de.telran.blog.dto.PostDto;
+import de.telran.blog.exception.RegexException;
 import de.telran.blog.service.PostService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +36,7 @@ public class PostController {
     }
 
     @GetMapping("/get")
-    public List<PostDto> getPostsByKeyWords(@RequestParam(value = "keywords", required = false) String keyWords){
+    public List<PostDto> getPostsByKeyWords(@RequestParam(value = "keywords", required = false) String keyWords) throws RegexException {
         return postService.getPostsByKeyWords(keyWords.toLowerCase());
     }
 }
