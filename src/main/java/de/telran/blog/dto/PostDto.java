@@ -23,4 +23,6 @@ public class PostDto {
     private String body;
     private Date date;
     private Long authorId;
+
+
 }
