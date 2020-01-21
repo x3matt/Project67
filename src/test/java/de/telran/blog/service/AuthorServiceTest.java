@@ -15,7 +15,8 @@ class AuthorServiceTest {
     @Autowired
     AuthorService authorService;
 
-    @Test
+    // TODO Refactor tests
+   /* @Test
     void WhenFirstNameAndLastNameNotNulls_thenOK() {
         AuthorDto authorDto = new AuthorDto();
         authorDto.setFirstName("Vasya");
@@ -31,7 +32,7 @@ class AuthorServiceTest {
         Assertions.assertThrows(DataIntegrityViolationException.class, () -> {
             authorService.createAuthor(authorDto);
         });
-    }
+    }*/
 
 
     @Test

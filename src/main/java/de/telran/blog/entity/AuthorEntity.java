@@ -1,8 +1,8 @@
 package de.telran.blog.entity;
-
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Table(name="author")
 @Entity
@@ -18,4 +18,6 @@ public class AuthorEntity {
 
     @Column(name = "last_name", nullable = false)
     private String lastName;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "authorEntity")
+    private Set<PostEntity> postEntities;
 }
