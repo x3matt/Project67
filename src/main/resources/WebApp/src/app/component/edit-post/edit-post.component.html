@@ -1,17 +1,30 @@
-<form [formGroup]="postForm">
+<div class="container">
   <input type="hidden" formControlName="id">
-  <div class="form-group" >
-    <label>Title</label>
-    <input type="text" class="form-control" formControlName="title" >
-  </div>
-  <div class="form-group">
-  <label>Body</label>
-    <textarea class="form-control" formControlName="body"></textarea>
-  </div>
-  <div class="form-group">
-    <label>Date</label>
-    <input type="date" formControlName="date">
-  </div>
-  <button type="submit" class="btn btn-primary" (click)="onSubmit($event)">Submit</button>
-</form>
-<div>{{postForm.getRawValue() | json }}</div>
+      <div class="card-body">
+        <form [formGroup]="postForm">
+          <div class="form-row">
+            <div class="name"><h2>Title</h2></div>
+            <div class="value">
+              <input class="input--style-6" style="width: 592px" type="text" placeholder="Post Title" formControlName="title">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="name"><h2>Body</h2></div>
+            <div class="value">
+              <div class="input-group">
+                <textarea class="textarea--style-6 date-picker" placeholder="Post Body" formControlName="body"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="name"><h2>Date</h2></div>
+            <div class="value">
+              <div class="input-group js-input-file">
+                <input type="date" formControlName="date">
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+        <button class="btn btn-primary btn--radius" type="submit" (click)="onSubmit($event)">Submit</button>
+</div>

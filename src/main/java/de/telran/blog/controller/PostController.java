@@ -1,6 +1,8 @@
 package de.telran.blog.controller;
 
 import de.telran.blog.dto.PostDto;
+import de.telran.blog.exception.RegexException;
+import de.telran.blog.service.PostService;
 import de.telran.blog.entity.PostEntity;
 import de.telran.blog.service.IAuthorService;
 import de.telran.blog.service.IPostService;
@@ -64,6 +66,11 @@ public class PostController {
     @GetMapping(value = "/{id}")
     public PostDto getPostById(@PathVariable("id") Long id) {
         return convertToDto(postService.getPost(id));
+    }
+
+    @GetMapping("/get")
+    public List<PostDto> getPostsByKeyWords(@RequestParam(value = "keywords", required = false) String keyWords) throws RegexException {
+        return postService.getPostsByKeyWords(keyWords.toLowerCase());
     }
 
     @PostMapping
