@@ -22,10 +22,14 @@ export class EditAuthorComponent implements OnInit {
         id: [],
         firstName: ['', [
           Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(10)
+          Validators.minLength(2),
+          Validators.maxLength(32)
         ]],
-        lastName: ['']
+        lastName: ['', [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(64)
+        ]]
       }
     );
     this.translateService.get('errors').subscribe((res: any) => {

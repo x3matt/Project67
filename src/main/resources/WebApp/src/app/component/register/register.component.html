@@ -1,0 +1,42 @@
+<div class="container">
+  <input type="hidden" formControlName="id">
+  <div class="card-body">
+    <form [formGroup]="registerForm">
+      <div class="form-row">
+        <div class="name"><h4>Login</h4></div>
+        <div class="value">
+          <input class="input--style-6" type="text" placeholder="Login" formControlName="login">
+        </div>
+        <app-validation-errors [translations]="getErrorTranslations()" [control]="getControl('login')"></app-validation-errors>
+      </div>
+      <div class="form-row">
+        <div class="name"><h4>Password</h4></div>
+        <div class="value">
+          <div class="input-group">
+            <input class="input--style-6" placeholder="Password" formControlName="password">
+          </div>
+        </div>
+        <app-validation-errors [translations]="getErrorTranslations()" [control]="getControl('password')"></app-validation-errors>
+      </div>
+      <div class="form-row">
+        <div class="name"><h4>Mail</h4></div>
+        <div class="value">
+          <div class="input-group">
+            <input class="input--style-6" placeholder="Mail" formControlName="mail">
+          </div>
+        </div>
+        <app-validation-errors [translations]="getErrorTranslations()" [control]="getControl('mail')"></app-validation-errors>
+      </div>
+      <div class="form-row">
+        <div class="name"><h4>Biography</h4></div>
+        <div class="value">
+          <div class="input-group">
+            <textarea class="textarea--style-6 date-picker" placeholder="Your biography" formControlName="biography"></textarea>
+          </div>
+        </div>
+        <app-validation-errors [translations]="getErrorTranslations()" [control]="getControl('biography')"></app-validation-errors>
+      </div>
+    </form>
+  </div>
+  <button class="btn btn-primary btn--radius" type="submit" (click)="onSubmit($event)">Submit</button>
+</div>

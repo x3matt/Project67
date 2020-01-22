@@ -1,27 +1,23 @@
-<div>{{ 'hello_world' | translate }}</div>
-<form [formGroup]="authorForm">
+<div class="container">
   <input type="hidden" formControlName="id">
-  <div class="form-group" >
-    <label [translate]="'first_name'"></label>
-    <input type="text" class="form-control" formControlName="firstName">
-    <div>{{authorForm.controls['firstName'].errors | json}}</div>
-    <app-validation-errors
-      [control]="getControl('firstName')"
-      [translations]="getErrorTranslations()"
-    >
-    </app-validation-errors>
-  </div>
-  <div class="form-group" >
-    <label translate >last_name</label>
-    <input type="text" class="form-control" formControlName="lastName" >
-  </div>
-  <button type="submit" class="btn btn-primary" (click)="onSubmit($event)">Submit</button>
-</form>
-<div>{{authorForm.getRawValue() | json }}</div>
-<div>Dirty:{{authorForm.controls['firstName'].dirty}}</div>
-<div>Pristine: {{authorForm.controls['firstName'].pristine}}</div>
-<div>Touched: {{authorForm.controls['firstName'].touched}}</div>
-<div>Valid: {{authorForm.controls['firstName'].valid}}</div>
-<div>Validation errors: {{authorForm.controls['firstName'].errors | json}}</div>
-<div>{{authorForm.controls['lastName'].value}}</div>
+  <div class="card-body">
+    <form [formGroup]="authorForm">
+      <div class="form-row">
+        <div class="name"><h2>First name</h2></div>
+        <div class="value">
+          <input class="input--style-6" type="text" placeholder="First name" formControlName="firstName">
+          <app-validation-errors [translations]="getErrorTranslations()" [control]="getControl('firstName')"></app-validation-errors>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="name"><h2>Last name</h2></div>
+        <div class="value">
+          <input class="input--style-6" type="text" placeholder="Last name" formControlName="lastName">
+          <app-validation-errors [translations]="getErrorTranslations()" [control]="getControl('lastName')"></app-validation-errors>
+        </div>
+      </div>
 
+    </form>
+  </div>
+  <button class="btn btn-primary btn--radius" type="submit" (click)="onSubmit($event)">Submit </button>
+</div>

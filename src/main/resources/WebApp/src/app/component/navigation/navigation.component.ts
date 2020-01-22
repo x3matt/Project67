@@ -34,6 +34,14 @@ export class NavigationComponent implements OnInit {
     {
       text: 'Create author',
       link: 'new-author'
+    },
+    {
+      text: 'Register',
+      link: 'register'
+    },
+    {
+      text: 'Login',
+      link: 'login'
     }
   ];
 

@@ -9,7 +9,7 @@ import {TranslateService} from '@ngx-translate/core';
 export class AppComponent {
 
   constructor(private translateService: TranslateService) {
-    translateService.setDefaultLang('ru');
+    translateService.setDefaultLang('en');
   }
   superPuperTitle = 'My super puper blog';
   newDivContents = 'Something to be added to div';

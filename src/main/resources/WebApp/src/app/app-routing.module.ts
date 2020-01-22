@@ -5,6 +5,8 @@ import { MainComponent } from './component/main/main.component';
 import {PostComponent} from './component/post/post.component';
 import {EditPostComponent} from './component/edit-post/edit-post.component';
 import {EditAuthorComponent} from './component/edit-author/edit-author.component';
+import {RegisterComponent} from "./component/register/register.component";
+import {LoginComponent} from "./component/login/login.component";
 
 
 const routes: Routes = [
@@ -12,7 +14,9 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'post/:id', component: PostComponent },
   { path: 'new-post', component: EditPostComponent },
-  { path: 'new-author', component: EditAuthorComponent }
+  { path: 'new-author', component: EditAuthorComponent },
+  {path: 'register',component: RegisterComponent},
+  {path: 'login',component: LoginComponent}
 ];
 
 @NgModule({

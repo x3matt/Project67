@@ -5,7 +5,8 @@
           <div class="form-row">
             <div class="name"><h2>Title</h2></div>
             <div class="value">
-              <input class="input--style-6" style="width: 592px" type="text" placeholder="Post Title" formControlName="title">
+              <input class="input--style-6" type="text" placeholder="Post Title" formControlName="title">
+              <app-validation-errors [translations]="getErrorTranslations()" [control]="getControl('title')"></app-validation-errors>
             </div>
           </div>
           <div class="form-row">
@@ -15,16 +16,18 @@
                 <textarea class="textarea--style-6 date-picker" placeholder="Post Body" formControlName="body"></textarea>
               </div>
             </div>
+            <app-validation-errors [translations]="getErrorTranslations()" [control]="getControl('body')"></app-validation-errors>
           </div>
           <div class="form-row">
             <div class="name"><h2>Date</h2></div>
             <div class="value">
-              <div class="input-group js-input-file">
-                <input type="date" formControlName="date">
+              <div class="bs-datepicker-container">
+                <input type="date" data-value="datepicker" class="bs-datepicker-buttons" formControlName="date">
               </div>
             </div>
+            <app-validation-errors [control]="getControl('date')" [translations]="getErrorTranslations()"></app-validation-errors>
           </div>
         </form>
       </div>
-        <button class="btn btn-primary btn--radius" type="submit" (click)="onSubmit($event)">Submit</button>
+        <button class="btn btn-primary btn--radius" type="submit" (click)="onSubmit($event)">Submit </button>
 </div>
