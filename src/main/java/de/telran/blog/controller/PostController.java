@@ -69,7 +69,7 @@ public class PostController {
     }
 
     @GetMapping("/get")
-    public List<PostDto> getPostsByKeyWords(@RequestParam(value = "keywords", required = false) String keyWords) throws RegexException {
+    public List<PostDto> getPostsByKeyWords(@RequestParam(value = "keywords", required = false) String keyWords){
         return postService.getPostsByKeyWords(keyWords.toLowerCase());
     }
 

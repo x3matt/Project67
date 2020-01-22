@@ -64,29 +64,37 @@ public class PostService implements IPostService{
         return postRepository.findAll();
     }
 
-    public List<PostDto> getPostsByKeyWords(String keyWord) throws RegexException {
+    public List<PostDto> getPostsByKeyWords(String keyWord){
         if(keyWord.contains("&") && keyWord.contains("/")) throw new RegexException("You can`t use two regexes in one string");
-        List<PostDto> result = new ArrayList<>();
-        String[] keyWords;
+        List<PostDto> result;
         if(keyWord.contains("/")){
-            keyWords = keyWord.split("/");
-            for(PostEntity post: postRepository.findAll()){
-                if(containsKeyWords(keyWords,"/",post)) result.add(new PostDto(post));
-            }
+            result = createPostDtoListByKeywords(keyWord, "/");
+            return result;
         }
         if(keyWord.contains("&")){
-            keyWords = keyWord.split("&");
-            for(PostEntity post: postRepository.findAll()){
-                if(containsKeyWords(keyWords,"&",post)) result.add(new PostDto(post));
-            }
+            result = createPostDtoListByKeywords(keyWord,"&");
         }
-        else {
-            for(PostEntity post: postRepository.findAll()){
-                if(
-                        post.getTitle().toLowerCase().contains(keyWord) ||
-                                post.getBody().toLowerCase().contains(keyWord))
-                    result.add(new PostDto(post));
-            }
+        else{
+            result = createPostDtoListWithoutKeywords(keyWord);
+        }
+        return result;
+    }
+
+    public List<PostDto> createPostDtoListByKeywords(String keyword,String regex){
+        List<PostDto> result = new ArrayList<>();
+        String[] keyWords = keyword.split(regex);
+        for(PostEntity post: postRepository.findAll()){
+            if(containsKeyWords(keyWords,regex,post)) result.add(new PostDto(post));
+        }
+        return result;
+    }
+    public List<PostDto> createPostDtoListWithoutKeywords(String keyword){
+        List<PostDto> result = new ArrayList<>();
+        for(PostEntity post: postRepository.findAll()){
+            if(
+                    post.getTitle().toLowerCase().contains(keyword) ||
+                            post.getBody().toLowerCase().contains(keyword))
+                result.add(new PostDto(post));
         }
         return result;
     }

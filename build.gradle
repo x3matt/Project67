@@ -86,7 +86,7 @@ test {
 flyway {
     url = 'jdbc:mysql://localhost:3306/blog?autoReconnect=true&useSSL=false&createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC'
     user = 'root'
-    password = 'root'
+    password = 'vladislavx3matt210420027355608'
     schemas = ['blog']
 }
 
