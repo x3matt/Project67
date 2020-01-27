@@ -65,6 +65,7 @@ public class PostService implements IPostService{
     }
 
     public List<PostDto> getPostsByKeyWords(String keyWord){
+        keyWord = keyWord.toLowerCase();
         if(keyWord.contains("&") && keyWord.contains("/")) throw new RegexException("You can`t use two regexes in one string");
         List<PostDto> result;
         if(keyWord.contains("/")){
